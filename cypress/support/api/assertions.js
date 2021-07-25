@@ -30,6 +30,17 @@ class Assertions {
     shouldDurationsBefast(response){
         expect(response.duration, 'duration').lessThan(900)
     }
+
+
+    requestHeadersTokenInvalido(response){
+                expect(response.requestHeaders).to.include({
+                        Cookie:"token=1nV41D0"
+                    })
+
+    }
+
+
+
     
 }
 export default new Assertions()

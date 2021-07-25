@@ -48,7 +48,7 @@ context('booking', () => {
 
                 })
         })
-        
+
     });
 
 
@@ -60,7 +60,64 @@ context('booking', () => {
 
                 })
         })
-        
+
+    });
+
+
+    it('tentar alterar uma reserva inexistente @functional', () => {
+        req.postBooking().then(postBookingResponse => {
+            req.updateBookingnInexistente(postBookingResponse)
+                .then(putBookingResponse => {
+                    assertions.shouldHaveStatus(putBookingResponse, 405)
+
+                })
+        })
+
+    });
+    it('tentar alterar uma reserva com token inválido @functional', () => {
+        req.postBooking().then(postBookingResponse => {
+            req.updateBookingnTokenInvalido(postBookingResponse)
+                .then(putBookingResponse => {
+                    assertions.shouldHaveStatus(putBookingResponse, 403)
+
+                })
+        })
+
+    });
+
+    it('tentar excluir uma reserva inexistente @functional', () => {
+        req.postBooking().then(postBookingResponse => {
+            req.deleteBookinginexistente(postBookingResponse)
+                .then(deletBookingResponse => {
+                    assertions.shouldHaveStatus(deletBookingResponse, 405)
+
+                })
+        })
+
+    });
+
+    it('tentar excluir uma reserva sem token @functional', () => {
+        req.postBooking().then(postBookingResponse => {
+            req.deleteBookingSemToken(postBookingResponse)
+                .then(deletBookingResponse => {
+                    assertions.shouldHaveStatus(deletBookingResponse, 403)
+
+                })
+        })
+
+    });
+
+
+    it.only('tentar excluir uma reserva com token invalido @functional', () => {
+        req.postBooking().then(postBookingResponse => {
+            req.deleteBookingInvalidoToken(postBookingResponse)
+                .then(deletBookingResponse => {
+                    assertions.shouldHaveStatus(deletBookingResponse, 403)
+                    assertions.requestHeadersTokenInvalido(deletBookingResponse)
+
+                })
+        })
+
     });
 });
 
