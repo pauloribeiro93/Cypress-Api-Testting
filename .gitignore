@@ -1,0 +1,10 @@
+#Dependencias
+node_modules/
+
+
+#Videos
+cypress/videos
+
+#Outros
+.DS_Store
+
