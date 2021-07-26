@@ -34,7 +34,7 @@ class Assertions {
 
     requestHeadersTokenInvalido(response){
                 expect(response.requestHeaders).to.include({
-                        Cookie:"token=1nV41D0"
+                        Cookie:"token=1nV41iD0"
                     })
 
     }
